@@ -1,0 +1,29 @@
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    text-align: right;
+    color: blue;
+    text-align: left;
+
+}
+body{
+    background-color: bisque;
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 5%;
+}
+.tag-1{
+    background-color: orangered;
+    padding: 10%;
+    align-content: center;
+    grid-column: 1 / 2;
+}
+.tag-2{
+    background-color: orangered;
+    padding: 10%;
+    align-content: center;
+    grid-column: 2 /4;
+}
