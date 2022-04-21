@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Adviz</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="container">
-      <div class="tag-1">
-        <h1>Login</h1>
-        <label for="user">Benutzername</label>
-        <input type="text" name="user" placeholder="Benutzername" /> <br>
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Passwort" /><br />
-        <button type="submit" name="submit" class="button">Login</button>
-      </div>
-      <div class="tag-2">
-        <label for="vorname">Vorname</label>
-        <input type="text" name="vorname" placeholder="Vorname" /><br />
-        <label for="nachname">Nachname</label>
-        <input type="text" name="nachname" placeholder="Nachname" /><br />
-        <label for="strasse">Straße</label>
-        <input type="text" name="strasse" placeholder="Straße" /><br />
-        <label for="plz">PLZ</label>
-        <input type="number" name="plz" placeholder="PLZ" /><br />
-        <label for="stadt">Stadt</label>
-        <input type="text" name="stadt" placeholder="Stadt" /><br />
-        <label for="land">Land</label>
-        <input type="text" name="land" placeholder="Land" /><br />
-      </div>
-        
-      <a href="https://www.google.de/">Registrieren</a>
+</head>
+
+<body>
+    <div class="login-form">
+        <h2>Login</h2>
+        <form action="" method="post" class="form">
+            <div class="input-group">
+                <p>Benutzername</p>
+                <input type="text" name="user" /> <br>
+                <p>Password</p>
+                <input type="password" name="password" /><br />
+            </div>
+            <button type="submit" value="Login" class="button">Login</button>
+        </form>
+        <div class="links-tav">
+            <a href="#registration-form" class="registration-form"> Registrieren </a>
+            <a href="#main-form" class="main-form">Main</a>
+        </div>
+        <div id="main-form">
+            <label class="item" for="vorname">Vorname</label>
+            <input type="text" name="vorname" placeholder="Vorname" /><br />
+            <label class="item" for="nachname">Nachname</label>
+            <input type="text" name="nachname" placeholder="Nachname" /><br />
+            <label class="item" for="strasse">Straße</label>
+            <input type="text" name="strasse" placeholder="Straße" /><br />
+            <label class="item" for="plz">PLZ</label>
+            <input type="number" name="plz" placeholder="PLZ" /><br />
+            <label class="item" for="stadt">Stadt</label>
+            <input type="text" name="stadt" placeholder="Stadt" /><br />
+            <label class="item" for="land">Land</label>
+            <input type="text" name="land" placeholder="Land" /><br />
+            <a href="#login-form"><button type="button" class="indexbtn">zurück</button></a>
+        </div>
+
+        <form action="#" method="post" class="form">
+            <div id="registration-form">
+                <h2>Registration</h2>
+                <div class="input-group">
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required> <br>
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required><br>
+
+                    <label for="psw-repeat"><b>Password wiederholen</b></label>
+                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
+                </div>
+                <div class="registration-btn">
+                    <button type="submit">anlegen</button>
+                    <a href="index.html"> <button type="button" class="zurueckbtn">abrechen</button></a>
+                </div>
+            </div>
+        </form>
     </div>
-  </body>
+
+
+</body>
+
 </html>

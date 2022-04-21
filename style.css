@@ -1,29 +1,104 @@
-h1 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 16px;
-    text-align: right;
-    color: blue;
-    text-align: left;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+    display: flex;
+    background: url(images/background.jfif) no-repeat;
+    background-size: cover;
 }
-body{
-    background-color: bisque;
+
+.login-form {
+    width: 100vw;
+    height: 100vh;
+    max-width: 420px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: aliceblue;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
 }
-.container{
+
+.login-form h2 {
+    color: rgb(230, 147, 24);
+    text-align: center;
+    font-size: 30px;
+    margin: 10px 20px 20px;
+}
+
+.login-form p {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form .input-group input {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+}
+
+.login-form button {
+    display: block;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    background: rgb(230, 147, 24);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: burlywood;
+    color: chartreuse;
+}
+
+.login-form .links-tav a {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    column-gap: 5%;
+    color: inherit;
+    margin-bottom: 10px;
 }
-.tag-1{
-    background-color: orangered;
-    padding: 10%;
-    align-content: center;
-    grid-column: 1 / 2;
+
+#main-form {
+    display: none;
 }
-.tag-2{
-    background-color: orangered;
-    padding: 10%;
-    align-content: center;
-    grid-column: 2 /4;
+
+#registration-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: blueviolet;
+    transition: 0.6s;
+}
+
+#registration-form:target {
+    height: 100%;
+    opacity: 1;
 }
