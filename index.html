@@ -3,26 +3,49 @@
 
 <head>
     <title>Adviz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="login-form">
-        <h2>Login</h2>
+    <div class="container">
         <form action="" method="post" class="form">
-            <div class="input-group">
-                <p>Benutzername</p>
-                <input type="text" name="user" /> <br>
-                <p>Password</p>
-                <input type="password" name="password" /><br />
-            </div>
-            <button type="submit" value="Login" class="button">Login</button>
+            <label for="user">Benutzername</label>
+            <input type="text" name="user" /> <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" /><br />
+            <button type="submit" value="Login">Login</button>
         </form>
-        <div class="links-tav">
-            <a href="#registration-form" class="registration-form"> Registrieren </a>
-            <a href="#main-form" class="main-form">Main</a>
+        <div class="main-form">
+            <div class="btn-main">
+                <button type="button" class="btn-1">Show Mine</button>
+                <button type="button" class="btn-2">Show All</button>
+                <button type="button" class="btn-3">Add New</button>
+            </div>
+            <div class="table">
+                <table class="table-group">
+                    <tr>
+                        <td>Anne</td>
+                    </tr>
+                    <tr>
+                        <td>Bob</td>
+                    </tr>
+                    <tr>
+                        <td>Carl</td>
+                    </tr>
+                    <tr>
+                        <td>Emil</td>
+                    </tr>
+                    <tr>
+                        <td>Fin</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="image">
+                <img src="images/karte.png" alt="Workplace" usemap="#workmap" width="200" height="250">
+            </div>
+
         </div>
-        <div id="main-form">
+        <form action="#" method="post" class="form">
             <label class="item" for="vorname">Vorname</label>
             <input type="text" name="vorname" placeholder="Vorname" /><br />
             <label class="item" for="nachname">Nachname</label>
@@ -35,26 +58,9 @@
             <input type="text" name="stadt" placeholder="Stadt" /><br />
             <label class="item" for="land">Land</label>
             <input type="text" name="land" placeholder="Land" /><br />
-            <a href="#login-form"><button type="button" class="indexbtn">zurück</button></a>
-        </div>
-
-        <form action="#" method="post" class="form">
-            <div id="registration-form">
-                <h2>Registration</h2>
-                <div class="input-group">
-                    <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required> <br>
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required><br>
-
-                    <label for="psw-repeat"><b>Password wiederholen</b></label>
-                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
-                </div>
-                <div class="registration-btn">
-                    <button type="submit">anlegen</button>
-                    <a href="index.html"> <button type="button" class="zurueckbtn">abrechen</button></a>
-                </div>
-            </div>
+            <label for="checkbox">Privat</label>
+            <input type="checkbox" name="checkbox">
+            <button type="button">Add</button>
         </form>
     </div>
 

@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+    display: flex;
+    background: url(images/background.jfif) no-repeat;
+    background-size: cover;
+}
+
+.container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    max-width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    justify-content: center;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 30px;
+    row-gap: 20px;
+    column-gap: 10px;
+    padding: 20px;
+    margin: 30px 30px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.form label {
+    font-size: 20px;
+}
+
+.form input {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+}
+
+.form button {
+    display: block;
+    border: none;
+    outline: none;
+    background: rgb(230, 147, 24);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background: rgb(59, 9, 238);
+    color: yellow;
+}
+
+.main-form {
+    width: 100vw;
+    height: 100vh;
+    max-width: 500px;
+    padding: 20px;
+    margin: 30px 30px;
+    column-gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.main-form .btn-main {
+    grid-column: 1/4;
+}
+
+.main-form table {
+    grid-column: 1/2;
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font-size: 12px;
+}
+
+.main-form table th {
+    background: orange;
+}
+
+.main-form image {
+    grid-column: 2/4;
+}
+
+.btn-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 10px;
+}
+
+.btn-main button {
+    display: block;
+    border: none;
+    outline: none;
+    background: rgb(230, 147, 24);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
