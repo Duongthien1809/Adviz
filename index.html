@@ -20,28 +20,34 @@
                 <button type="button" class="btn-1">Show Mine</button>
                 <button type="button" class="btn-2">Show All</button>
                 <button type="button" class="btn-3">Add New</button>
+                <button type="button" class="btn-4">Logout</button>
             </div>
-            <div class="table">
-                <table class="table-group">
-                    <tr>
-                        <td>Anne</td>
-                    </tr>
-                    <tr>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td>Carl</td>
-                    </tr>
-                    <tr>
-                        <td>Emil</td>
-                    </tr>
-                    <tr>
-                        <td>Fin</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="image">
-                <img src="images/karte.png" alt="Workplace" usemap="#workmap" width="200" height="250">
+            <table class="table-group">
+                <tr>
+                    <td><a href="#update-form" class="a-group">Anne</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#update-form" class="a-group">Bob</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#update-form" class="a-group">Carl</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#update-form" class="a-group">Emil</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#update-form" class="a-group">Fyn</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#update-form" class="a-group">Gina</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#update-form" class="a-group">Herta</a></td>
+                </tr>
+            </table>
+
+            <div class="image-tav">
+                <img src="images/karte.png" alt="Workplace" width="250" height="300">
             </div>
 
         </div>
@@ -60,10 +66,29 @@
             <input type="text" name="land" placeholder="Land" /><br />
             <label for="checkbox">Privat</label>
             <input type="checkbox" name="checkbox">
+            <br>
             <button type="button">Add</button>
         </form>
+        <form action="#" method="post" class="form" id="update-form">
+            <label class="item" for="vorname">Vorname</label>
+            <input type="text" name="vorname" placeholder="Vorname" /><br />
+            <label class="item" for="nachname">Nachname</label>
+            <input type="text" name="nachname" placeholder="Nachname" /><br />
+            <label class="item" for="strasse">Straße</label>
+            <input type="text" name="strasse" placeholder="Straße" /><br />
+            <label class="item" for="plz">PLZ</label>
+            <input type="number" name="plz" placeholder="PLZ" /><br />
+            <label class="item" for="stadt">Stadt</label>
+            <input type="text" name="stadt" placeholder="Stadt" /><br />
+            <label class="item" for="land">Land</label>
+            <input type="text" name="land" placeholder="Land" /><br />
+            <label for="checkbox">Privat</label>
+            <input type="checkbox" name="checkbox">
+            <br>
+            <button type="button">Update</button>
+            <button type="button">Delete</button>
+        </form>
     </div>
-
 
 </body>
 
