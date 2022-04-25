@@ -65,13 +65,13 @@
             <label class="item" for="land">Land</label>
             <input type="text" name="land" placeholder="Land" /><br />
             <label class="item" for="phone">Telefon</label>
-            <input type="tel" name="phone" placeholder="Telefonnummer" /><br />
+            <input type="tel" name="phone" placeholder="Telefonnummer" value="+" pattern="^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$" title="Eine gültige Telefonnr. eingeben!" /><br />
             <label class="item" for="birth">Geburtsdatum</label>
             <input type="date" name="birth" placeholder="Geburtsdatum" /><br />
             <label for="checkbox">Privat</label>
             <input type="checkbox" name="checkbox">
             <br>
-            <button type="button">Add</button>
+            <button type="submit">Add</button>
         </form>
         <form action="#" method="post" class="form" id="update-form">
             <label class="item" for="vorname">Vorname</label>
@@ -87,13 +87,13 @@
             <label class="item" for="land">Land</label>
             <input type="text" name="land" placeholder="Land" /><br />
             <label class="item" for="phone">Telefon</label>
-            <input type="tel" name="phone" placeholder="Telefonnummer" /><br />
+            <input type="tel" name="phone" placeholder="Telefonnummer" value="+" pattern="^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$" title="Eine gültige Telefonnr. eingeben!" /><br />
             <label class="item" for="birth">Geburtsdatum</label>
             <input type="date" name="birth" placeholder="Geburtsdatum" /><br />
             <label for="checkbox">Privat</label>
             <input type="checkbox" name="checkbox">
             <br>
-            <button type="button">Update</button>
+            <button type="submit">Update</button>
             <button type="button">Delete</button>   
         </form>
     </div>
