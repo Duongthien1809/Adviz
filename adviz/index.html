@@ -53,21 +53,25 @@
         </div>
         <form action="#" method="post" class="form">
             <label class="item" for="vorname">Vorname</label>
-            <input type="text" name="vorname" placeholder="Vorname" /><br />
+            <input type="text" name="vorname" placeholder="Vorname" required/><br />
             <label class="item" for="nachname">Nachname</label>
-            <input type="text" name="nachname" placeholder="Nachname" /><br />
+            <input type="text" name="nachname" placeholder="Nachname" required/><br />
             <label class="item" for="strasse">Straße</label>
-            <input type="text" name="strasse" placeholder="Straße" /><br />
+            <input type="text" name="strasse" placeholder="Straße" required/><br />
             <label class="item" for="plz">PLZ</label>
-            <input type="number" name="plz" placeholder="PLZ" /><br />
+            <input type="number" name="plz" placeholder="PLZ" required/><br />
             <label class="item" for="stadt">Stadt</label>
-            <input type="text" name="stadt" placeholder="Stadt" /><br />
+            <input type="text" name="stadt" placeholder="Stadt" required/><br />
             <label class="item" for="land">Land</label>
             <input type="text" name="land" placeholder="Land" /><br />
+            <label class="item" for="phone">Telefon</label>
+            <input type="tel" name="phone" placeholder="Telefonnummer" value="+" pattern="^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$" title="Eine gültige Telefonnr. eingeben!" /><br />
+            <label class="item" for="birth">Geburtsdatum</label>
+            <input type="date" name="birth" placeholder="Geburtsdatum" /><br />
             <label for="checkbox">Privat</label>
             <input type="checkbox" name="checkbox">
             <br>
-            <button type="button">Add</button>
+            <button type="submit">Add</button>
         </form>
         <form action="#" method="post" class="form" id="update-form">
             <label class="item" for="vorname">Vorname</label>
@@ -82,11 +86,15 @@
             <input type="text" name="stadt" placeholder="Stadt" /><br />
             <label class="item" for="land">Land</label>
             <input type="text" name="land" placeholder="Land" /><br />
+            <label class="item" for="phone">Telefon</label>
+            <input type="tel" name="phone" placeholder="Telefonnummer" value="+" pattern="^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$" title="Eine gültige Telefonnr. eingeben!" /><br />
+            <label class="item" for="birth">Geburtsdatum</label>
+            <input type="date" name="birth" placeholder="Geburtsdatum" /><br />
             <label for="checkbox">Privat</label>
             <input type="checkbox" name="checkbox">
             <br>
-            <button type="button">Update</button>
-            <button type="button">Delete</button>
+            <button type="submit">Update</button>
+            <button type="button">Delete</button>   
         </form>
     </div>
 
