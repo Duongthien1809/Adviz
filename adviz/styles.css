@@ -77,7 +77,7 @@ body {
 
 .main-form {
     width: 500px;
-    height: 450px;
+    height: 580px;
     padding: 20px;
     margin: 30px 30px;
     column-gap: 10px;
@@ -93,12 +93,13 @@ body {
 
 .main-form .btn-main {
     grid-column: 1/4;
+    height: 50px;
 }
 
 .main-form table {
     border-collapse: collapse;
     width: 120px;
-    height: 350px;
+    height: 250px;
     display: grid;
     grid-column: 1/2;
     color: black;
@@ -108,7 +109,7 @@ body {
 }
 
 .main-form table tr td {
-    width: 120px;
+    width: 115px;
     border: 1px solid white;
     padding: 13px;
     background-color: antiquewhite;
@@ -124,7 +125,8 @@ body {
 }
 
 .main-form .image-tav {
-    height: 350px;
+    height: 480px;
+    width: 350px;
     border: 1px solid white;
     grid-column: 2/4;
     display: grid;
@@ -135,7 +137,7 @@ body {
 .btn-main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 5px;
+    column-gap: 10px;
 }
 
 .btn-main button {
@@ -156,10 +158,17 @@ body {
     color: yellow;
 }
 
-.location {
-    width: 32px;
-    height: 44px;
+.map {
     position: relative;
-    left: 190px;
-    top: -244px;
+    top: 5px;
+    width: 340px;
+    height: 465px;
+}
+
+.location {
+    width: 48px;
+    height: 66px;
+    position: relative;
+    left: 255px;
+    top: -370px;
 }
