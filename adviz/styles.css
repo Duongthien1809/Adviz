@@ -172,3 +172,8 @@ body {
     left: 255px;
     top: -370px;
 }
+
+.pointer {
+    cursor: crosshair;
+    display: block;
+}
