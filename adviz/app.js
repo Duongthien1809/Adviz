@@ -1,87 +1,101 @@
+
 let loggedIn = false
 let currentUser = {}
-let userAdmina = {username: "admina", password: "password", role:"admin"};
-let userNormalo = {username: "normalo", password: "password", role:"normal"};
+let userAdmina = {username: "admina", password: "password", role: "admin"};
+let userNormalo = {username: "normalo", password: "password", role: "normal"};
 let users = [userAdmina, userNormalo]
 let contactBook = {
     admina: [
         {
-            firstName: "Alice",
+            firstName: "Alice private admin",
             lastName: "A.",
-            street: "test street A",
-            postCode: 12345,
-            city: "test city A",
-            country: "test county A",
+            street: "Wilhelminenhofstraße 7",
+            postCode: "12459",
+            city: "Berlin",
+            country: "Deutschland",
             phone: "+49 123 456789",
-            birthday: "01.01.2000",
+            birthday: "1998-12-13",
             isPrivate: true,
-            x: 120,
-            y: -420,
         },
         {
-            firstName: "Bob",
+            firstName: "Bob public admin",
             lastName: "B.",
-            street: "test street B",
-            postCode: 12345,
-            city: "test city B",
-            country: "test county B",
+            street: "Kirchenallee 34",
+            postCode: "20099",
+            city: "Hamburg",
+            country: "Deutschland",
             phone: "+49 123 456789",
-            birthday: "01.01.2000",
+            birthday: "1995-01-20",
             isPrivate: false,
-            x: 80,
-            y: -230,
+
         },
     ],
     normalo: [
         {
-            firstName: "Charlie",
+            firstName: "Charlie private normalo",
             lastName: "C.",
-            street: "test street C",
-            postCode: 12345,
-            city: "test city C",
-            country: "test county C",
+            street: "Straße am Flugplatz 66C",
+            postCode: "12487",
+            city: "Berlin",
+            country: "Deutschland",
             phone: "+49 123 456789",
-            birthday: "01.01.2000",
+            birthday: "2003-05-05",
             isPrivate: true,
-            x: 50,
-            y: -340,
         },
         {
-            firstName: "Dora",
+            firstName: "Dora public normalo",
             lastName: "D.",
-            street: "test street D",
-            postCode: 12345,
-            city: "test city D",
-            country: "test county D",
+            street: "Fraunhoferstr. 26",
+            postCode: "10587",
+            city: "Berlin",
+            country: "Deutschland",
             phone: "+49 123 456789",
-            birthday: "01.01.2000",
+            birthday: "2000-10-10",
             isPrivate: false,
-            x: 180,
-            y: -170,
         },
 
     ]
 }
+
 function login() {
     if (loggedIn) {
         return false
     }
-    user = document.getElementById("user").value;
-    password = document.getElementById("password").value;
+    let user = document.getElementById("user").value;
+    let password = document.getElementById("password").value;
     document.getElementById("loginFailed").style.display = "none";
     for (const known_user of users) {
 
         if (user == known_user.username && password == known_user.password) {
             currentUser = known_user
             login_user(user);
+            setmap();
             return false
         }
     }
-    
+
     document.getElementById("loginFailed").style.display = "block";
-     
+
     return false
 }
+
+function setmap() {
+    const mapkey = L.mapquest.key = 'FrbcAtR0UAEtA4yHA9mxPgj5RVCKEADA';
+    L.mapquest.open = true;
+    const mq = L.mapquest.map('mymap', {
+        center: [52.5, 13.4],
+        layers: L.mapquest.tileLayer('map'),
+        zoom: 10
+    });
+    mq.addControl(L.mapquest.control());
+}
+
+function setmarker(adress, postCode, stadt, land){
+    const location = adress + ", " + postCode + ", " + stadt + ", " + land;
+    console.log(location)
+    L.mapquest.geocoding().geocode(location);
+}
+
 function login_user(user) {
     // nach dem Einlogen wird es so zeigt: 
     // maincontainer: Contactliste, map und drei button
@@ -91,12 +105,22 @@ function login_user(user) {
     document.getElementById("welcomeMsg").innerHTML = "Welcome, " + userToUpper(user) + "!";
     // auf true gesetzt um logout zu können
     loggedIn = true;
-    // alle vorgegebene Kontakte werden angezeigt
-    showMyContacts()
+    
 }
+
+function logout() {
+    if (!loggedIn) {
+        return false;
+    }
+    document.getElementById("loginContainer").style.display = "flex";
+    document.getElementById("mainContainer").style.display = "none";
+    loggedIn = false;
+    
+}
+
 function resetContacts() {
     // set own location
-    document.getElementById("locationPointers").innerHTML = '<div class="location"><img src="images/location_pointer.png" alt="Workplace" class="pointerImg" ><span class="tooltiptext">YOU</span></div>'
+    // document.getElementById("locationPointers").innerHTML = '<div class="location"><img src="images/location_pointer.png" alt="Workplace" class="pointerImg" ><span class="tooltiptext">YOU</span></div>'
     document.getElementById("contactsTable").innerHTML = ""
 }
 
@@ -112,47 +136,49 @@ function showAllContacts() {
         }
     }
 }
+
 function showMyContacts() {
     resetContacts()
     for (let i = 0; i < contactBook[currentUser['username']].length; i++) {
         showContact(contactBook[currentUser['username']][i], i, currentUser['username'])
     }
 }
+
 function showContact(contact, contactId, owner) {
-    document.getElementById("contactsTable").innerHTML += 
+    //show the table list
+    document.getElementById("contactsTable").innerHTML +=
         "<tr class='contactCard' onclick='showUpdateContact(" + contactId + ", \"" + owner + "\")'>" +
-            "<td>"+contact['firstName']+"</td>"+
+        "<td>" + contact['firstName'] + "</td>" +
         "</tr>"
-        document.getElementById("locationPointers").innerHTML += 
-            '<div class="location" style="left: '+contact['x']+'px; top: '+contact['y']+'px;">' +
-                '<img src="images/location_pointer.png" alt="Workplace" class="pointerImg" >' +
-                '<span class="tooltiptext">'+userToUpper(contact['firstName'])+'</span>' +           
-            '</div>'
+    document.getElementById("locationPointers").innerHTML +=  setmarker(contact['street'],contact['postCode'], contact['city'], contact['country']);
 }
 
 function showAddContact() {
     addContactDiv = document.getElementById("addContact")
     addContactDiv.style.display = "flex"
-    addContactDiv.scrollIntoView({ behavior: 'smooth' });
+    addContactDiv.scrollIntoView({behavior: 'smooth'});
 }
+
 async function closeAddContact() {
     await new Promise(resolve => {
-        document.getElementById("menuContainer").scrollIntoView({ behavior: 'smooth' })
+        document.getElementById("menuContainer").scrollIntoView({behavior: 'smooth'})
         setTimeout(() => {
             resolve("");
         }, 500);
     })
     document.getElementById("addContact").style.display = "none";
 }
+
 async function closeUpdateContact() {
     await new Promise(resolve => {
-        document.getElementById("menuContainer").scrollIntoView({ behavior: 'smooth' })
+        document.getElementById("menuContainer").scrollIntoView({behavior: 'smooth'})
         setTimeout(() => {
             resolve("");
         }, 500);
     })
     document.getElementById("updateContact").style.display = "none";
 }
+
 function createContact() {
     firstName = document.getElementById("addContactFirstName").value;
     lastName = document.getElementById("addContactLastName").value;
@@ -162,11 +188,19 @@ function createContact() {
     country = document.getElementById("addContactCountry").value;
     phone = document.getElementById("addContactPhone").value;
     birthday = document.getElementById("addContactBirthday").value;
-    isPrivate = document.getElementById("addContactIsPrivate").value;
-    // Generate random coordinates for now...
-    x = Math.floor(Math.random() * 200) + 50;
-    y = -(Math.floor(Math.random() * 450) + 50);
-    contactBook[currentUser['username']].push({firstName: firstName, lastName: lastName, street: street, postCode: postCode, city: city, country: country, phone: phone, birthday: birthday, isPrivate: isPrivate, x: x, y: y})
+    isPrivate = document.getElementById("addContactIsPrivate").checked;
+    console.log(document.getElementById("addContactIsPrivate").checked);
+    contactBook[currentUser['username']].push({
+        firstName: firstName,
+        lastName: lastName,
+        street: street,
+        postCode: postCode,
+        city: city,
+        country: country,
+        phone: phone,
+        birthday: birthday,
+        isPrivate: isPrivate,
+    })
     showMyContacts()
     closeAddContact()
     return false
@@ -175,7 +209,7 @@ function createContact() {
 function showUpdateContact(contactId, owner) {
     updateContactDiv = document.getElementById("updateContact")
     updateContactDiv.style.display = "flex"
-    updateContactDiv.scrollIntoView({ behavior: 'smooth' });
+    updateContactDiv.scrollIntoView({behavior: 'smooth'});
 
     contact = contactBook[owner][contactId]
     document.getElementById("updateContactFirstName").value = contact['firstName'];
@@ -186,27 +220,25 @@ function showUpdateContact(contactId, owner) {
     document.getElementById("updateContactCountry").value = contact['country'];
     document.getElementById("updateContactPhone").value = contact['phone'];
     document.getElementById("updateContactBirthday").value = contact['birthday'];
-    document.getElementById("updateContactIsPrivate").value = contact['isPrivate'];
+    if (contact['isPrivate']) {
+        document.getElementById("updateContactIsPrivate").checked = true;
+    } else {
+        document.getElementById("updateContactIsPrivate").checked = false;
+    }
+    console.log(document.getElementById("updateContactIsPrivate").value);
 }
+
 function updateContact() {
     closeUpdateContact()
     return false
 }
+
 function deleteContact() {
     console.log(contactBook);
     console.log(document.getElementById("update-form"))
     closeUpdateContact()
 }
 
-function logout() {
-    if (!loggedIn) {
-        return false;
-    }
-    document.getElementById("loginContainer").style.display = "flex";
-    document.getElementById("mainContainer").style.display = "none";
-    loggedIn = false;
-}
-
 function userToUpper(user) {
-    return user.charAt(0).toUpperCase() + user.slice(1) 
+    return user.charAt(0).toUpperCase() + user.slice(1)
 }

@@ -28,14 +28,17 @@ body {
     flex-direction: column;
     justify-content: center;
 }
+
 #mainContainer {
     display: none;
 }
+
 .errorMsg {
     color: red;
     display: none;
     font-size: medium;
 }
+
 .loginForm {
     background: rgba(0, 0, 0, 0.7);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
@@ -45,10 +48,11 @@ body {
     padding: 20px;
     margin: 30px 30px;
 }
+
 .form {
     width: 500px;
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     grid-auto-rows: 30px;
     row-gap: 10px;
     column-gap: 10px;
@@ -60,9 +64,10 @@ body {
     padding: 20px;
     margin: 30px 30px;
 }
+
 .loginFormDiv {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     grid-auto-rows: 30px;
     row-gap: 10px;
     column-gap: 10px;
@@ -73,12 +78,18 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .welcomeMsg {
-    font-family:'Courier New', Courier, monospace;
-    color:darkorchid;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    align-self: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: yellowgreen;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     width: 500px;
 }
 
@@ -86,6 +97,7 @@ label {
     font-size: 20px;
     color: white;
 }
+
 input {
     position: relative;
     width: 100%;
@@ -202,30 +214,24 @@ button {
     color: yellow;
 }
 
-.map {
+#mymap {
     position: relative;
     top: 5px;
     width: 340px;
     height: 465px;
 }
-.pointerImg {
-    width: 48px;
-    height: 66px;
-}
+
 .locationPointers {
     position: relative;
 }
+
 .location {
-    position:absolute;
+    position: absolute;
     left: 255px;
     top: -370px;
     width: min-content;
 }
 
-.pointer {
-    cursor: crosshair;
-    display: block;
-}
 .location .tooltiptext {
     visibility: hidden;
     width: 120px;
@@ -234,15 +240,16 @@ button {
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-  
+
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-  }
-  
-  .location:hover .tooltiptext {
+}
+
+.location:hover .tooltiptext {
     visibility: visible;
-  }
+}
+
 
 #updateContact {
     display: none
