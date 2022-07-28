@@ -13,7 +13,7 @@ let contactBook = {
             postCode: "12459",
             city: "Berlin",
             country: "Deutschland",
-            phone: "+49 123 456789",
+            phone: "+49123456789",
             birthday: "1998-12-13",
             isPrivate: true,
         },
@@ -24,7 +24,7 @@ let contactBook = {
             postCode: "20099",
             city: "Hamburg",
             country: "Deutschland",
-            phone: "+49 123 456789",
+            phone: "+49123456789",
             birthday: "1995-01-20",
             isPrivate: false,
 
@@ -38,7 +38,7 @@ let contactBook = {
             postCode: "12487",
             city: "Berlin",
             country: "Deutschland",
-            phone: "+49 123 456789",
+            phone: "+49123456789",
             birthday: "2003-05-05",
             isPrivate: true,
         },
@@ -49,7 +49,7 @@ let contactBook = {
             postCode: "10587",
             city: "Berlin",
             country: "Deutschland",
-            phone: "+49 123 456789",
+            phone: "+49123456789",
             birthday: "2000-10-10",
             isPrivate: false,
         },
@@ -64,12 +64,13 @@ function login() {
     let user = document.getElementById("user").value;
     let password = document.getElementById("password").value;
     document.getElementById("loginFailed").style.display = "none";
-    for (const known_user of users) {
+    for (let known_user of users) {
 
         if (user == known_user.username && password == known_user.password) {
             currentUser = known_user
             login_user(user);
             setmap();
+            showMyContacts();
             return false
         }
     }
@@ -115,7 +116,6 @@ function logout() {
     document.getElementById("loginContainer").style.display = "flex";
     document.getElementById("mainContainer").style.display = "none";
     loggedIn = false;
-    
 }
 
 function resetContacts() {
@@ -157,25 +157,18 @@ function showAddContact() {
     addContactDiv = document.getElementById("addContact")
     addContactDiv.style.display = "flex"
     addContactDiv.scrollIntoView({behavior: 'smooth'});
+    document.getElementById("menuContainer").style.display = "none";
+    document.getElementById("updateContact").style.display = "none";
 }
 
 async function closeAddContact() {
-    await new Promise(resolve => {
-        document.getElementById("menuContainer").scrollIntoView({behavior: 'smooth'})
-        setTimeout(() => {
-            resolve("");
-        }, 500);
-    })
     document.getElementById("addContact").style.display = "none";
+    document.getElementById("menuContainer").style.display = "flex";
+    
 }
 
 async function closeUpdateContact() {
-    await new Promise(resolve => {
-        document.getElementById("menuContainer").scrollIntoView({behavior: 'smooth'})
-        setTimeout(() => {
-            resolve("");
-        }, 500);
-    })
+    document.getElementById("menuContainer").style.display = "flex";
     document.getElementById("updateContact").style.display = "none";
 }
 
@@ -206,11 +199,9 @@ function createContact() {
     return false
 }
 
-function showUpdateContact(contactId, owner) {
-    updateContactDiv = document.getElementById("updateContact")
-    updateContactDiv.style.display = "flex"
-    updateContactDiv.scrollIntoView({behavior: 'smooth'});
-
+async function showUpdateContact(contactId, owner) {
+    document.getElementById("menuContainer").style.display = "none";
+    document.getElementById("updateContact").style.display = "flex";
     contact = contactBook[owner][contactId]
     document.getElementById("updateContactFirstName").value = contact['firstName'];
     document.getElementById("updateContactLastName").value = contact['lastName'];
