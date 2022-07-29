@@ -67,7 +67,7 @@ function login() {
     for (let known_user of users) {
 
         if (user == known_user.username && password == known_user.password) {
-            currentUser = known_user
+            currentUser = known_user;
             login_user(user);
             setmap();
             showMyContacts();
@@ -182,18 +182,29 @@ function createContact() {
     phone = document.getElementById("addContactPhone").value;
     birthday = document.getElementById("addContactBirthday").value;
     isPrivate = document.getElementById("addContactIsPrivate").checked;
-    console.log(document.getElementById("addContactIsPrivate").checked);
-    contactBook[currentUser['username']].push({
+    let contact = {
         firstName: firstName,
-        lastName: lastName,
-        street: street,
-        postCode: postCode,
-        city: city,
-        country: country,
-        phone: phone,
-        birthday: birthday,
-        isPrivate: isPrivate,
-    })
+            lastName: lastName,
+            street: street,
+            postCode: postCode,
+            city: city,
+            country: country,
+            phone: phone,
+            birthday: birthday,
+            isPrivate: isPrivate,
+    }
+    // contactBook[currentUser['username']].push({
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //     street: street,
+    //     postCode: postCode,
+    //     city: city,
+    //     country: country,
+    //     phone: phone,
+    //     birthday: birthday,
+    //     isPrivate: isPrivate,
+    // })
+    console.log(JSON. stringify(contact));
     showMyContacts()
     closeAddContact()
     return false
