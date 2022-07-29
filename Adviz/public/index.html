@@ -4,7 +4,7 @@
 <head>
     <title>Adviz</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <script type="text/javascript" src="javascripts/script.js"></script>
+    <script type="text/javascript" src="./javascripts/script.js"></script>
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
 </head>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div id="addContact">
-            <form class="form" id="add-form" onsubmit="return createContact()">
+            <form class="form" name="add-form" id="add-form" onsubmit="return createContact()">
                 <label class="item" for="vorname">Vorname</label>
                 <input id="addContactFirstName" type="text" name="vorname" placeholder="Vorname" required/>
                 <label class="item" for="nachname">Nachname</label>
