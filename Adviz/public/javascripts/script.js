@@ -1,4 +1,5 @@
 
+const { result } = require('lodash');
 let loggedIn = false
 let currentUser = {}
 let userAdmina = {username: "admina", password: "password", role: "admin"};
