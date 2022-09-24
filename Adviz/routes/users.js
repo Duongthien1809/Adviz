@@ -1,16 +1,22 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const userController = require('../controller/usercontroller');
+
 
 /* GET users listing. */
-router.get('/', function(req, res) {
-  res.send('respond with a resource');
-});
+// router for users
+router.route('/users')
+.get(userController.getAll)
+.delete(userController.deleteAll);
 
-router.put('/user', (req, res) => {
-  res.send('Got a PUT request at /user')
-})
+router.post('/users/register',userController.Register);
+router.route('/users/login')
+.post(userController.login);    
 
-router.delete('/user', (req, res) => {
-  res.send('Got a DELETE request at /user')
-})
+// router für eizelnen user
+router.route('/users/:username')
+.get(userController.getUserById)
+.put(userController.updateUserByUsername)
+.delete(userController.deleteUserByUsername);
+
 module.exports = router;

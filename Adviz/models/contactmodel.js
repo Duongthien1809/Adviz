@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 //init the contact schema
 const contactSchema = new Schema({
-    firstName: {
+    firstname: {
         type: String,
         required: true
     },
-    lastName:{
+    lastname:{
         type: String,
         required: true
     },
@@ -15,7 +15,7 @@ const contactSchema = new Schema({
         type: String,
         required: true
     },
-    postCode: {
+    postcode: {
         type: Number,
         required: true
     },

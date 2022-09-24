@@ -1,101 +1,63 @@
-
-const { result } = require('lodash');
-let loggedIn = false
-let currentUser = {}
-let userAdmina = {username: "admina", password: "password", role: "admin"};
-let userNormalo = {username: "normalo", password: "password", role: "normal"};
-let users = [userAdmina, userNormalo]
-let contactBook = {
-    admina: [
-        {
-            firstName: "Alice private admin",
-            lastName: "A.",
-            street: "Wilhelminenhofstraße 7",
-            postCode: "12459",
-            city: "Berlin",
-            country: "Deutschland",
-            phone: "+49123456789",
-            birthday: "1998-12-13",
-            isPrivate: true,
-        },
-        {
-            firstName: "Bob public admin",
-            lastName: "B.",
-            street: "Kirchenallee 34",
-            postCode: "20099",
-            city: "Hamburg",
-            country: "Deutschland",
-            phone: "+49123456789",
-            birthday: "1995-01-20",
-            isPrivate: false,
-
-        },
-    ],
-    normalo: [
-        {
-            firstName: "Charlie private normalo",
-            lastName: "C.",
-            street: "Straße am Flugplatz 66C",
-            postCode: "12487",
-            city: "Berlin",
-            country: "Deutschland",
-            phone: "+49123456789",
-            birthday: "2003-05-05",
-            isPrivate: true,
-        },
-        {
-            firstName: "Dora public normalo",
-            lastName: "D.",
-            street: "Fraunhoferstr. 26",
-            postCode: "10587",
-            city: "Berlin",
-            country: "Deutschland",
-            phone: "+49123456789",
-            birthday: "2000-10-10",
-            isPrivate: false,
-        },
-
-    ]
-}
-
+let loggedIn = false;
+let currentUser = {};
+let contactBook = [];
+let currentContactID = "";
+let currentOwner = "";
+let currentLat = 0;
+let currentLng = 0;
 function login() {
     if (loggedIn) {
-        return false
+        return false;
     }
-    let user = document.getElementById("user").value;
-    let password = document.getElementById("password").value;
+
+    let username = document.getElementById("user").value;
+    let password = document.getElementById("password").value;        
+    let request = {username, password};
+    console.log(JSON.stringify(request));
+    url = "http://localhost:3000/users/login";
+
+    fetch(url,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if(data.error){
+              alert(data.error);
+          }else{
+              currentUser = data;
+              login_user(username);
+              setmap();
+              showMyContacts();
+              return false;
+          }
+        })
+        .catch((error) => {
+            document.getElementById("loginFailed").style.display = "block";
+        });
+    resetContacts();
     document.getElementById("loginFailed").style.display = "none";
-    for (let known_user of users) {
 
-        if (user == known_user.username && password == known_user.password) {
-            currentUser = known_user;
-            login_user(user);
-            setmap();
-            showMyContacts();
-            return false
-        }
-    }
-
-    document.getElementById("loginFailed").style.display = "block";
-
-    return false
+    return false;
 }
 
 function setmap() {
-    const mapkey = L.mapquest.key = 'FrbcAtR0UAEtA4yHA9mxPgj5RVCKEADA';
+    L.mapquest.key = 'FrbcAtR0UAEtA4yHA9mxPgj5RVCKEADA';
     L.mapquest.open = true;
     const mq = L.mapquest.map('mymap', {
-        center: [52.5, 13.4],
+        center: [52.50143,13.40479],
         layers: L.mapquest.tileLayer('map'),
-        zoom: 10
+        zoom: 20,
     });
     mq.addControl(L.mapquest.control());
 }
 
-function setmarker(adress, postCode, stadt, land){
+async function setmarker(adress, postCode, stadt, land){
     const location = adress + ", " + postCode + ", " + stadt + ", " + land;
-    console.log(location)
-    L.mapquest.geocoding().geocode(location);
+    await L.mapquest.geocoding().geocode(location);
 }
 
 function login_user(user) {
@@ -122,47 +84,58 @@ function logout() {
 function resetContacts() {
     // set own location
     // document.getElementById("locationPointers").innerHTML = '<div class="location"><img src="images/location_pointer.png" alt="Workplace" class="pointerImg" ><span class="tooltiptext">YOU</span></div>'
-    document.getElementById("contactsTable").innerHTML = ""
+    document.getElementById("contactsTable").innerHTML = "";
 }
 
-function showAllContacts() {
-    resetContacts()
+async function showAllContacts() {
+    resetContacts();
 
-    for (user of users) {
-        for (let i = 0; i < contactBook[user['username']].length; i++) {
-            contact = contactBook[user['username']][i]
-            if (contact['isPrivate'] === false || currentUser['role'] === "admin" || user === currentUser) {
-                showContact(contact, i, user['username'])
+    url = "http://localhost:3000/contacts";
+    await fetch(url).then(res => {return res.json()})
+    .then(data => {
+        contactBook = data;
+        contactBook.forEach(contact => {
+            if(contact.isPrivate === false || currentUser.role === "admin" || currentUser.role === contact.owner) {
+                showContact(contact, contact._id, contact.owner);
             }
-        }
-    }
+        });
+    });
 }
 
-function showMyContacts() {
+async function showMyContacts() {
     resetContacts()
-    for (let i = 0; i < contactBook[currentUser['username']].length; i++) {
-        showContact(contactBook[currentUser['username']][i], i, currentUser['username'])
-    }
+    url = "http://localhost:3000/contacts";
+    await fetch(url).then(res => {return res.json()})
+    .then(data => { 
+        data.forEach(contact => {
+            if  (contact.owner === currentUser.role) {
+                showContact(contact, contact._id, contact.owner);
+            }
+        });
+    });
 }
 
 function showContact(contact, contactId, owner) {
+    // get data for lat and lng
+    addresstoLatLng(contact.street, contact.postcode, contact.city);
     //show the table list
     document.getElementById("contactsTable").innerHTML +=
-        "<tr class='contactCard' onclick='showUpdateContact(" + contactId + ", \"" + owner + "\")'>" +
-        "<td>" + contact['firstName'] + "</td>" +
-        "</tr>"
-    document.getElementById("locationPointers").innerHTML +=  setmarker(contact['street'],contact['postCode'], contact['city'], contact['country']);
+        "<tr class='contactCard' onclick='showUpdateContact(" + JSON.stringify(contactId) + ", \"" + owner + "\")'>" +
+        "<td>" + contact.firstname + "</td>" +
+        "</tr>";
+    document.getElementById("locationPointers").innerHTML +=  setmarker(contact.street,contact.postcode, contact.city, contact.country);
 }
 
 function showAddContact() {
-    addContactDiv = document.getElementById("addContact")
-    addContactDiv.style.display = "flex"
+    addContactDiv = document.getElementById("addContact");
+    addContactDiv.style.display = "flex";
     addContactDiv.scrollIntoView({behavior: 'smooth'});
     document.getElementById("menuContainer").style.display = "none";
     document.getElementById("updateContact").style.display = "none";
 }
 
 async function closeAddContact() {
+    document.getElementById("loginContainer").style.display = "none";
     document.getElementById("addContact").style.display = "none";
     document.getElementById("menuContainer").style.display = "flex";
     
@@ -182,66 +155,145 @@ function createContact() {
     country = document.getElementById("addContactCountry").value;
     phone = document.getElementById("addContactPhone").value;
     birthday = document.getElementById("addContactBirthday").value;
-    isPrivate = document.getElementById("addContactIsPrivate").checked;
-    let contact = {
-        firstName: firstName,
-            lastName: lastName,
+    if(document.getElementById("addContactIsPrivate").checked){
+        isPrivate = true;
+    }else{
+        isPrivate = false;
+    }
+    const contact = {
+            firstname: firstName,
+            lastname: lastName,
             street: street,
-            postCode: postCode,
+            postcode: postCode,
             city: city,
             country: country,
             phone: phone,
             birthday: birthday,
             isPrivate: isPrivate,
-    }
-    // contactBook[currentUser['username']].push({
-    //     firstName: firstName,
-    //     lastName: lastName,
-    //     street: street,
-    //     postCode: postCode,
-    //     city: city,
-    //     country: country,
-    //     phone: phone,
-    //     birthday: birthday,
-    //     isPrivate: isPrivate,
-    // })
-    console.log(JSON. stringify(contact));
-    showMyContacts()
-    closeAddContact()
-    return false
+            owner: currentUser.role,
+            lat:currentLat,
+            lng: currentLng,
+    };
+    url = "http://localhost:3000/contacts"
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contact),
+    });
+    showMyContacts();
+    closeAddContact();
+    return false;
 }
 
-async function showUpdateContact(contactId, owner) {
+function showUpdateContact(contactId, owner) {
     document.getElementById("menuContainer").style.display = "none";
     document.getElementById("updateContact").style.display = "flex";
-    contact = contactBook[owner][contactId]
-    document.getElementById("updateContactFirstName").value = contact['firstName'];
-    document.getElementById("updateContactLastName").value = contact['lastName'];
-    document.getElementById("updateContactStreet").value = contact['street'];
-    document.getElementById("updateContactPostCode").value = contact['postCode'];
-    document.getElementById("updateContactCity").value = contact['city'];
-    document.getElementById("updateContactCountry").value = contact['country'];
-    document.getElementById("updateContactPhone").value = contact['phone'];
-    document.getElementById("updateContactBirthday").value = contact['birthday'];
-    if (contact['isPrivate']) {
-        document.getElementById("updateContactIsPrivate").checked = true;
-    } else {
-        document.getElementById("updateContactIsPrivate").checked = false;
+    url = `http://localhost:3000/contacts/${contactId}`;
+    currentContactID = contactId;
+    if(currentUser.role == owner || currentUser.role == "admin"){
+        fetch(url).then(res => {return res.json()})
+    .then(contact => { 
+        addresstoLatLng(contact.street, contact.postCode, contact.city);
+        document.getElementById("updateContactFirstName").value = contact.firstname;
+        document.getElementById("updateContactLastName").value = contact.lastname;
+        document.getElementById("updateContactStreet").value = contact.street;
+        document.getElementById("updateContactPostCode").value = contact.postcode;
+        document.getElementById("updateContactCity").value = contact.city;
+        document.getElementById("updateContactCountry").value = contact.country;
+        document.getElementById("updateContactPhone").value = contact.phone;
+        document.getElementById("updateContactBirthday").value = contact.birthday;
+        if (contact.isPrivate == true) {
+            document.getElementById("updateContactIsPrivate").checked = true;
+        } else {
+            document.getElementById("updateContactIsPrivate").notChecked = false;
+        }
+        currentOwner = contact.owner;
+    });
+    }else{
+        alert("keine Recht admin Contact zu ändern!!");
+        closeUpdateContact();
     }
-    console.log(document.getElementById("updateContactIsPrivate").value);
+        
 }
 
 function updateContact() {
-    closeUpdateContact()
-    return false
+    
+        firstName = document.getElementById("updateContactFirstName").value;
+        lastName = document.getElementById("updateContactLastName").value;
+        street = document.getElementById("updateContactStreet").value;
+        postCode = document.getElementById("updateContactPostCode").value;
+        city = document.getElementById("updateContactCity").value;
+        country = document.getElementById("updateContactCountry").value;
+        phone = document.getElementById("updateContactPhone").value;
+        birthday = document.getElementById("updateContactBirthday").value;
+        if(document.getElementById("updateContactIsPrivate").checked) {
+            isPrivate = true;
+        }else{
+            isPrivate = false;
+        }
+    const contact = {
+        firstname: firstName,
+        lastname: lastName,
+        street: street,
+        postcode: postCode,
+        city: city,
+        country: country,
+        phone: phone,
+        birthday: birthday,
+        isPrivate: isPrivate,
+        owner: currentOwner,
+        lat: currentLat,
+        lng: currentLng,
+    };
+    url = `http://localhost:3000/contacts/${currentContactID}`
+    fetch(url, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contact),
+    });
+    closeUpdateContact();
+    return false;
 }
 
 function deleteContact() {
-    console.log(contactBook);
-    console.log(document.getElementById("update-form"))
-    closeUpdateContact()
+    url = `http://localhost:3000/contacts/${currentContactID}`
+    fetch(url, {
+        method: "DELETE",
+    });
+    resetContacts();
+    closeUpdateContact();
 }
 
 function userToUpper(user) {
-    return user.charAt(0).toUpperCase() + user.slice(1)
+    return user.charAt(0).toUpperCase() + user.slice(1);
+}
+
+async function addresstoLatLng(street, postcode, city) {
+    const url = "http://www.mapquestapi.com/geocoding/v1/address?key=cBdJO8Oy3mwHOkFoOUejjp7GOR95dAXW";
+    const address = ""+ street +", "+ postcode +", " +  city +" ";
+    const data = {
+        "location": address,
+        "options": {
+          "thumbMaps": false
+        }
+      }
+    const option = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+    };
+    await fetch(url,option)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        currentLat = data.results[0].locations[0].displayLatLng.lat;
+        currentLng = data.results[0].locations[0].displayLatLng.lng; 
+    });
 }

@@ -8,8 +8,8 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
     box-sizing: border-box;
     display: flex;
-    background-color: black;
-    background: url(/Adviz/public/images/background.png) no-repeat;
+    /* background-color: hwb(168 94% 0%); */
+    background: url('../images/background.png') no-repeat;
     background-size: cover;
     background-attachment: fixed;
     height: 100%;

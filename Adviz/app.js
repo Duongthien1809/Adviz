@@ -1,51 +1,49 @@
 //add dependencies
 const express = require('express');
-const indexRouter = require('./routes/index');
-const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Contact = require('./models/contactmodel');
-const { result } = require('lodash');
+const contactRouter = require('./routes/contacts');
+const userRouter = require('./routes/users');
+const session = require('express-session');
+const cors = require('cors');
+require('dotenv').config();
+
 
 //Variable init
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 8080;
 
-//connect with database via mongoose
-const dbURI = 'mongodb+srv://adviz:test123@advizdb.0ucgdi5.mongodb.net/adviz?retryWrites=true&w=majority';
-mongoose.connect(dbURI)
-  .then((result) => app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  }))
-  .catch((err) => console.log(err))
 
+// add static files
+app.use(express.static('public'));
+
+app.listen(port, () => {
+    console.log(`start listening on ${port}`);
+});
+
+// connect to MongoDB
+mongoose.connect(process.env.MONGODB_URL);
+mongoose.connection.once('open', () => {
+    console.log('Database connected successfully'); 
+}).on('error', (err) => {console.error(err);}); 
 
 //add middleware
+app.use(cors());
 app.use(morgan('dev'));
+app.use(session({
+	secret: process.env.SECRET_KEY,
+	resave: true,
+	saveUninitialized: true
+}));
 app.use(express.urlencoded({extended: true}));
-app.use('/', indexRouter);
+app.use(express.json());
 
-//mongoose and mongo sandbox routes
-app.get('/add-contact', (req, res) => {
-  const contact = new Contact({
-    firstName: "Bob public admin",
-    lastName: "B.",
-    street: "Kirchenallee 34",
-    postCode: "20099",
-    city: "Hamburg",
-    country: "Deutschland",
-    phone: "+49123456789",
-    birthday: "1995-01-20",
-    isPrivate: false,
-  });
-  contact.save()
-    .then((result) => {
-      res.send(result)
-    })
-    .catch((err) => {
-      res.send(err)
-    })
-})
+//add routers
+app.use(userRouter);
+app.use(contactRouter);
+
+
+// npm joi für Input Validation
 
 
 module.exports = app;
