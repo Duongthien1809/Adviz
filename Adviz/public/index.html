@@ -12,12 +12,12 @@
 <body>
 <div class="container">
     <div class="container" id="loginContainer">
-        <form onsubmit="return login()" class="loginForm">
+        <form onsubmit="return login()" class="loginForm" id="loginForm">
             <div class="loginFormDiv">
                 <label for="user">Benutzername</label>
-                <input id="user" type="text" name="user" value="admina"/>
+                <input id="user" type="text" name="username""/>
                 <label for="password">Password</label>
-                <input id="password" type="password" name="password" value="password"/>
+                <input id="password" type="password" name="password" />
             </div>
             <br>
             <div class="loginButton">
@@ -61,26 +61,26 @@
             </div>
         </div>
         <div id="addContact">
-            <form class="form" action="" method="POST" id="add-form" onsubmit="return createContact()">
+            <form class="form" id="add-form" onsubmit="return createContact()">
                 <label class="item" for="vorname">Vorname</label>
-                <input id="addContactFirstName" type="text" name="vorname" placeholder="Vorname" required/>
+                <input id="addContactFirstName" type="text" name="firstname" placeholder="Vorname" required/>
                 <label class="item" for="nachname">Nachname</label>
-                <input id="addContactLastName" type="text" name="nachname" placeholder="Nachname" required/>
+                <input id="addContactLastName" type="text" name="lastname" placeholder="Nachname" required/>
                 <label class="item" for="strasse">Straße</label>
-                <input id="addContactStreet" type="text" name="strasse" placeholder="Straße" required/>
+                <input id="addContactStreet" type="text" name="street" placeholder="Straße" required/>
                 <label class="item" for="plz">PLZ</label>
-                <input id="addContactPostCode" type="number" name="plz" placeholder="PLZ" required/>
+                <input id="addContactPostCode" type="number" name="postcode" placeholder="PLZ" required/>
                 <label class="item" for="stadt">Stadt</label>
-                <input id="addContactCity" type="text" name="stadt" placeholder="Stadt" required/>
+                <input id="addContactCity" type="text" name="city" placeholder="Stadt" required/>
                 <label class="item" for="land">Land</label>
-                <input id="addContactCountry" type="text" name="land" placeholder="Land"/>
+                <input id="addContactCountry" type="text" name="country" placeholder="Land"/>
                 <label class="item" for="phone">Telefon</label>
                 <input id="addContactPhone" type="tel" name="phone" placeholder="Telefonnummer" value="+"
                        pattern="^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$" title="Eine gültige Telefonnr. eingeben!"/>
                 <label class="item" for="birth">Geburtsdatum</label>
-                <input id="addContactBirthday" type="date" name="birth" placeholder="Geburtsdatum"/>
+                <input id="addContactBirthday" type="date" name="birthday" placeholder="Geburtsdatum"/>
                 <label for="checkbox">Privat</label>
-                <input id="addContactIsPrivate" type="checkbox" name="checkbox">
+                <input id="addContactIsPrivate" type="checkbox" name="isPrivate">
                 <button onclick="closeAddContact()" type="reset">Cancel</button>
                 <button type="submit">Add</button>
             </form>
@@ -89,24 +89,24 @@
         <div id="updateContact">
             <form class="form" id="update-form" onsubmit="return updateContact()">
                 <label class="item" for="vorname">Vorname</label>
-                <input id="updateContactFirstName" type="text" name="vorname" placeholder="Vorname" required/>
+                <input id="updateContactFirstName" type="text" name="firstname" placeholder="Vorname" required/>
                 <label class="item" for="nachname">Nachname</label>
-                <input id="updateContactLastName" type="text" name="nachname" placeholder="Nachname" required/>
+                <input id="updateContactLastName" type="text" name="lastname" placeholder="Nachname" required/>
                 <label class="item" for="strasse">Straße</label>
-                <input id="updateContactStreet" type="text" name="strasse" placeholder="Straße" required/>
+                <input id="updateContactStreet" type="text" name="street" placeholder="Straße" required/>
                 <label class="item" for="plz">PLZ</label>
-                <input id="updateContactPostCode" type="number" name="plz" placeholder="PLZ" required/>
+                <input id="updateContactPostCode" type="number" name="postcode" placeholder="PLZ" required/>
                 <label class="item" for="stadt">Stadt</label>
-                <input id="updateContactCity" type="text" name="stadt" placeholder="Stadt" required/>
+                <input id="updateContactCity" type="text" name="city" placeholder="Stadt" required/>
                 <label class="item" for="land">Land</label>
-                <input id="updateContactCountry" type="text" name="land" placeholder="Land"/>
+                <input id="updateContactCountry" type="text" name="country" placeholder="Land"/>
                 <label class="item" for="phone">Telefon</label>
                 <input id="updateContactPhone" type="tel" name="phone" placeholder="Telefonnummer" value="+"
                        pattern="^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$" title="Eine gültige Telefonnr. eingeben!"/>
                 <label class="item" for="birth">Geburtsdatum</label>
-                <input id="updateContactBirthday" type="date" name="birth" placeholder="Geburtsdatum"/>
+                <input id="updateContactBirthday" type="date" name="birthday" placeholder="Geburtsdatum"/>
                 <label for="checkbox">Privat</label>
-                <input id="updateContactIsPrivate" type="checkbox" name="checkbox">
+                <input id="updateContactIsPrivate" type="checkbox" name="isPrivate">
                 <button type="submit">Update</button>
                 <button onclick="deleteContact()" type="button">Delete</button>
             </form>
