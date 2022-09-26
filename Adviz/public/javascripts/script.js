@@ -5,6 +5,7 @@ let currentContactID = "";
 let currentOwner = "";
 let currentLat = 0;
 let currentLng = 0;
+
 function login() {
     if (loggedIn) {
         return false;
@@ -194,8 +195,8 @@ function showUpdateContact(contactId, owner) {
     currentContactID = contactId;
     if(currentUser.role == owner || currentUser.role == "admin"){
         fetch(url).then(res => {return res.json()})
-    .then(contact => { 
-        addresstoLatLng(contact.street, contact.postCode, contact.city);
+        .then(contact => { 
+        addresstoLatLng(contact.street, contact.postcode, contact.city);
         document.getElementById("updateContactFirstName").value = contact.firstname;
         document.getElementById("updateContactLastName").value = contact.lastname;
         document.getElementById("updateContactStreet").value = contact.street;
@@ -207,7 +208,7 @@ function showUpdateContact(contactId, owner) {
         if (contact.isPrivate == true) {
             document.getElementById("updateContactIsPrivate").checked = true;
         } else {
-            document.getElementById("updateContactIsPrivate").notChecked = false;
+            document.getElementById("updateContactIsPrivate").checked = false;
         }
         currentOwner = contact.owner;
     });
@@ -219,7 +220,6 @@ function showUpdateContact(contactId, owner) {
 }
 
 function updateContact() {
-    
         firstName = document.getElementById("updateContactFirstName").value;
         lastName = document.getElementById("updateContactLastName").value;
         street = document.getElementById("updateContactStreet").value;
