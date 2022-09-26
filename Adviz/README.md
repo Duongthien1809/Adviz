@@ -16,7 +16,7 @@ Aviz ist eine Webapplikation, welche basieren auf nodejs und html, css, javascri
 ### 1. Vorbeireitung
 installieren den projekt und gehen zu der Projekt Lokale:
 ```
-./<user>/../Thian-duovog-WAD2022/Adviz
+./<user>/../Adviz
 
 ```
 #### Nodejs Dependencies
@@ -51,7 +51,8 @@ das zeigt, dass der Projekt erfolgreich gestartet ist.
 ***
 jetzt öffnen Sie Ihren Browser und geben diesen url `https://localhost:3000` ein.
 
-den Login Seit wird wie Unter angezeigt:
+den Login Seit wird wie Unter angezeigt
+
 ![login](./public/images/readmeImages/Login.png "Login Page")
 
 ##### Login
@@ -64,24 +65,33 @@ den Login Seit wird wie Unter angezeigt:
 + Password: password
 
 bei falschen Username oder Password: wird Benutzer erwähnt!
+
 ![falschepassword_or_username](./public/images/readmeImages/falscheusername_or_password.png)
-wenn Password oder Password sind korrekt, wird Benutzer zu Homepage geleitet: 
+
+wenn Password oder Password sind korrekt, wird Benutzer zu Homepage geleitet
+
 ![homepage](./public/images/readmeImages/homepage_admina.png)
 ###### Welcome Message
+
 Benutzer wird mit admin role `Welcome, Amina` oder mit normalo role  `Welcome, Normalo` gezeigt.
 
 ###### Show Mine 
+
 wenn `Show Mine` gedrückt ist, wird alle Kontakte mit gleichen von Benutzer role geben. 
-1. Als Amina eingelogt:
+1. Als Amina eingelogt
+
 ![admin_showmine](./public/images/readmeImages/Show_mine_admin.png)
-2. Als Normalo eingelogt:
+
+
+2. Als Normalo eingelogt
+
 ![normalo_showmine](./public/images/readmeImages/showmine_normalo.png)
 
 ###### Show All
 * Admina: 
-** Alle Kontakte von role `admin` und `normalo` inklusive die private Kontakte werden angezeigt.
-+ Normalo: 
-** Alle Kontakte von role `normalo` und  nicht private Kontakte von role `admin` werden angezeigt.
+* * Alle Kontakte von role `admin` und `normalo` inklusive die private Kontakte werden angezeigt.
+* Normalo: 
+* * Alle Kontakte von role `normalo` und  nicht private Kontakte von role `admin` werden angezeigt.
 
 ###### Add New
 
