@@ -43,7 +43,7 @@ oder
 nodemon app.js
 ```
 nach dem diesen Command ausgeführt, wird diesen Output auf Ihren Terminal zeigen
-![alt npm_start](./public/images/readmeImages/npmstart.png "npm start")
+![alt npm_start](./Adviz/public/images/readmeImages/npmstart.png "npm start")
 
 das zeigt, dass der Projekt erfolgreich gestartet ist. 
 
@@ -53,7 +53,7 @@ jetzt öffnen Sie Ihren Browser und geben diesen url `https://localhost:3000` ei
 
 den Login Seit wird wie Unter angezeigt
 
-![login](./public/images/readmeImages/Login.png "Login Page")
+![login](./Adviz/public/images/readmeImages/Login.png "Login Page")
 
 ##### Login
 ***
@@ -66,11 +66,11 @@ den Login Seit wird wie Unter angezeigt
 
 bei falschen Username oder Password: wird Benutzer erwähnt!
 
-![falschepassword_or_username](./public/images/readmeImages/falscheusername_or_password.png)
+![falschepassword_or_username](./Adviz/public/images/readmeImages/falscheusername_or_password.png "falsche password or username")
 
 wenn Password oder Password sind korrekt, wird Benutzer zu Homepage geleitet
 
-![homepage](./public/images/readmeImages/homepage_admina.png)
+![homepage](./Adviz/public/images/readmeImages/homepage_admina.png "Homepage")
 ###### Welcome Message
 
 Benutzer wird mit admin role `Welcome, Amina` oder mit normalo role  `Welcome, Normalo` gezeigt.
@@ -80,18 +80,18 @@ Benutzer wird mit admin role `Welcome, Amina` oder mit normalo role  `Welcome, N
 wenn `Show Mine` gedrückt ist, wird alle Kontakte mit gleichen von Benutzer role geben. 
 1. Als Amina eingelogt
 
-![admin_showmine](./public/images/readmeImages/Show_mine_admin.png)
+![admin_showmine](./Adviz/public/images/readmeImages/Show_mine_admin.png "showmine admin")
 
 
 2. Als Normalo eingelogt
 
-![normalo_showmine](./public/images/readmeImages/showmine_normalo.png)
+![normalo_showmine](./Adviz/public/images/readmeImages/showmine_normalo.png "shownmine normalo")
 
 ###### Show All
 * Admina: 
-* * Alle Kontakte von role `admin` und `normalo` inklusive die private Kontakte werden angezeigt.
+Alle Kontakte von role `admin` und `normalo` inklusive die private Kontakte werden   angezeigt.
 * Normalo: 
-* * Alle Kontakte von role `normalo` und  nicht private Kontakte von role `admin` werden angezeigt.
+Alle Kontakte von role `normalo` und  nicht private Kontakte von role `admin` werden angezeigt.
 
 ###### Add New
 
