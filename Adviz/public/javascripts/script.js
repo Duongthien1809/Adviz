@@ -77,6 +77,7 @@ function logout() {
     if (!loggedIn) {
         return false;
     }
+    document.getElementById("loginFailed").style.display = "none";
     document.getElementById("loginContainer").style.display = "flex";
     document.getElementById("mainContainer").style.display = "none";
     loggedIn = false;
