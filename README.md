@@ -1,9 +1,10 @@
-
-
 # Adviz Webseite
 ***
 Aviz ist eine Webapplikation, welche basieren auf nodejs und html, css, javascript.
-
+***
+name: Hoang Thien Duong
+matrikelnummer: S0577508
+***
 ## Literature
 1. [Vorbeireitung](#1-vorbeireitung)
 * [Nodejs Dependencies](#nodejs-dependencies)
@@ -64,7 +65,7 @@ den Login Seit wird wie Unter angezeigt
 + Username: normalo
 + Password: password
 
-bei falschen Username oder Password: wird Benutzer erwähnt!
+Bei falschen Username oder Password, wird das angezeigt
 
 ![falschepassword_or_username](./Adviz/public/images/readmeImages/falscheusername_or_password.png "falsche password or username")
 
@@ -94,8 +95,28 @@ Alle Kontakte von role `admin` und `normalo` inklusive die private Kontakte werd
 Alle Kontakte von role `normalo` und  nicht private Kontakte von role `admin` werden angezeigt.
 
 ###### Add New
+wenn Add new gedrückt ist, wird den Add Kontackt Form gezeigt.
 
-###### Update Kontakt
+![add-new](./Adviz/public/images/readmeImages/addnew.png "add new")
+
+
+Wenn Ausfüllen fertig ist: 
+
+![add-new-ausgefüllt](./Adviz/public/images/readmeImages/addnew_ausgefuellt.png "add new ausgefuellt")
+
+können Sie Add drücken. Kontakt wird in Datenbank gespeichert und Sie werden gleichzeitig an Homepage zurzück geleitet. Von Homepage können sie entweder auf [Show Mine](#show-mine) oder [Show All](#show-all) drücken um den neuen Kontakt zu sehen.
+###### Update/Delete Kontakt
+Von der Homepage können Kontakte sehen und genaue Lokale von allen Kontakte sehen. 
+Wenn sie auf jeweiligen Kontakt drücken werden Sie zu Update Form gezeigt.
++ Hinweis: 
+Als `normalo` können Sie nur die Kontakte mit ownner als `normalo` ändern(update oder delete).
+Als `admin` können Sie alle Kontakte ändern(update oder delete). 
+
+wenn Sie kontakte geändert haben, werden Sie zu Homepage zurzück geleitet. 
+
+![update-form](./Adviz/public/images/readmeImages/update_form.png "update-form")
 
 ###### Logout
+
+mit Logout button können Sie ausloggen und werden Sie zu Login Form gezeigt, damit Sie wieder einloggen können.
 
