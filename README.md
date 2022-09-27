@@ -117,8 +117,8 @@ Wenn sie auf jeweiligen Kontakt drücken werden Sie zu Update Form gezeigt.
 * Hinweis: 
     + Als `normalo` können Sie nur die Kontakte mit ownner als `normalo` ändern(update oder delete).
     + Als `admin` können Sie alle Kontakte ändern(update oder delete). 
-    + wenn Sie auf Kontakt drücken aber nicht geändert haben, können Sie auf ![Updatebutton](./Adviz/public/images/readmeImages/update_button.png), es wird Ihnen zurück zu Homepage leiten. 
-    
+    + wenn Sie auf Kontakt drücken aber nicht geändert haben, können Sie auf ![Updatebutton](./Adviz/public/images/readmeImages/update_button.png) drücken, es wird Ihnen zurück zu Homepage leiten. 
+
 * wenn Sie kontakte geändert haben, werden Sie zu Homepage zurzück geleitet. 
 
 ![update-form](./Adviz/public/images/readmeImages/update_form.png "update-form")
