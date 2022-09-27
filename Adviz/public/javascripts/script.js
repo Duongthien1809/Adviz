@@ -222,7 +222,7 @@ function showUpdateContact(contactId, owner) {
             currentOwner = contact.owner;
         });
     }else{
-        alert("keine Recht admin Contact zu ändern!!");
+        alert("Keine Recht admin Contact zu ändern!!");
         closeUpdateContact();
     }
         
