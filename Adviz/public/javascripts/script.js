@@ -5,6 +5,8 @@ let currentContactID = "";
 let currentOwner = "";
 let currentLat = 0;
 let currentLng = 0;
+let mq;
+let markers = [];
 
 function login() {
     if (loggedIn) {
@@ -32,7 +34,6 @@ function login() {
               currentUser = data;
               login_user(username);
               setmap();
-              showMyContacts();
               return false;
           }
         })
@@ -48,18 +49,23 @@ function login() {
 function setmap() {
     L.mapquest.key = 'FrbcAtR0UAEtA4yHA9mxPgj5RVCKEADA';
     L.mapquest.open = true;
-    const mq = L.mapquest.map('mymap', {
+    mq = L.mapquest.map('mymap', {
         center: [52.50143,13.40479],
         layers: L.mapquest.tileLayer('map'),
-        zoom: 20,
+        zoom: 10,
     });
     mq.addControl(L.mapquest.control());
 }
 
-async function setmarker(adress, postCode, stadt, land){
-    const location = adress + ", " + postCode + ", " + stadt + ", " + land;
-    await L.mapquest.geocoding().geocode(location);
+function setmarker(contact){
+    const popup = ""+contact.firstname +": "+ contact.street +", "+ contact.postcode +" "+ contact.city
+    const marker = new L.marker([contact.lat, contact.lng], {
+        icon: L.mapquest.icons.marker(),
+        draggable: false
+      }).bindPopup(popup);
+    return marker;
 }
+
 
 function login_user(user) {
     // nach dem Einlogen wird es so zeigt: 
@@ -84,8 +90,9 @@ function logout() {
 }
 
 function resetContacts() {
-    // set own location
-    // document.getElementById("locationPointers").innerHTML = '<div class="location"><img src="images/location_pointer.png" alt="Workplace" class="pointerImg" ><span class="tooltiptext">YOU</span></div>'
+    markers.forEach(marker => {
+        mq.removeLayer(marker);
+    });
     document.getElementById("contactsTable").innerHTML = "";
 }
 
@@ -105,7 +112,7 @@ async function showAllContacts() {
 }
 
 async function showMyContacts() {
-    resetContacts()
+    resetContacts();
     url = "http://localhost:3000/contacts";
     await fetch(url).then(res => {return res.json()})
     .then(data => { 
@@ -118,14 +125,15 @@ async function showMyContacts() {
 }
 
 function showContact(contact, contactId, owner) {
-    // get data for lat and lng
-    addresstoLatLng(contact.street, contact.postcode, contact.city);
     //show the table list
     document.getElementById("contactsTable").innerHTML +=
         "<tr class='contactCard' onclick='showUpdateContact(" + JSON.stringify(contactId) + ", \"" + owner + "\")'>" +
         "<td>" + contact.firstname + "</td>" +
         "</tr>";
-    document.getElementById("locationPointers").innerHTML +=  setmarker(contact.street,contact.postcode, contact.city, contact.country);
+    console.log(contact.lat, contact.lng);
+    marker = setmarker(contact);
+    marker.addTo(mq);
+    markers.push(marker);
 }
 
 function showAddContact() {
@@ -184,7 +192,7 @@ function createContact() {
         },
         body: JSON.stringify(contact),
     });
-    showMyContacts();
+    resetContacts();
     closeAddContact();
     return false;
 }
@@ -197,22 +205,22 @@ function showUpdateContact(contactId, owner) {
     if(currentUser.role == owner || currentUser.role == "admin"){
         fetch(url).then(res => {return res.json()})
         .then(contact => { 
-        addresstoLatLng(contact.street, contact.postcode, contact.city);
-        document.getElementById("updateContactFirstName").value = contact.firstname;
-        document.getElementById("updateContactLastName").value = contact.lastname;
-        document.getElementById("updateContactStreet").value = contact.street;
-        document.getElementById("updateContactPostCode").value = contact.postcode;
-        document.getElementById("updateContactCity").value = contact.city;
-        document.getElementById("updateContactCountry").value = contact.country;
-        document.getElementById("updateContactPhone").value = contact.phone;
-        document.getElementById("updateContactBirthday").value = contact.birthday;
-        if (contact.isPrivate == true) {
-            document.getElementById("updateContactIsPrivate").checked = true;
-        } else {
-            document.getElementById("updateContactIsPrivate").checked = false;
-        }
-        currentOwner = contact.owner;
-    });
+            // addresstoLatLng(contact.street, contact.postcode, contact.city, contact.country);
+            document.getElementById("updateContactFirstName").value = contact.firstname;
+            document.getElementById("updateContactLastName").value = contact.lastname;
+            document.getElementById("updateContactStreet").value = contact.street;
+            document.getElementById("updateContactPostCode").value = contact.postcode;
+            document.getElementById("updateContactCity").value = contact.city;
+            document.getElementById("updateContactCountry").value = contact.country;
+            document.getElementById("updateContactPhone").value = contact.phone;
+            document.getElementById("updateContactBirthday").value = contact.birthday;
+            if (contact.isPrivate == true) {
+                document.getElementById("updateContactIsPrivate").checked = true;
+            } else {
+                document.getElementById("updateContactIsPrivate").checked = false;
+            }
+            currentOwner = contact.owner;
+        });
     }else{
         alert("keine Recht admin Contact zu ändern!!");
         closeUpdateContact();
@@ -234,30 +242,32 @@ function updateContact() {
         }else{
             isPrivate = false;
         }
-    const contact = {
-        firstname: firstName,
-        lastname: lastName,
-        street: street,
-        postcode: postCode,
-        city: city,
-        country: country,
-        phone: phone,
-        birthday: birthday,
-        isPrivate: isPrivate,
-        owner: currentOwner,
-        lat: currentLat,
-        lng: currentLng,
-    };
-    url = `http://localhost:3000/contacts/${currentContactID}`
-    fetch(url, {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(contact),
-    });
-    closeUpdateContact();
-    return false;
+
+        const contact = {
+            firstname: firstName,
+            lastname: lastName,
+            street: street,
+            postcode: postCode,
+            city: city,
+            country: country,
+            phone: phone,
+            birthday: birthday,
+            isPrivate: isPrivate,
+            owner: currentOwner,
+            lat: currentLat,
+            lng: currentLng,
+        };
+        url = `http://localhost:3000/contacts/${currentContactID}`
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(contact),
+        });
+        resetContacts();
+        closeUpdateContact();
+        return false;
 }
 
 function deleteContact() {
@@ -271,30 +281,4 @@ function deleteContact() {
 
 function userToUpper(user) {
     return user.charAt(0).toUpperCase() + user.slice(1);
-}
-
-async function addresstoLatLng(street, postcode, city) {
-    const url = "http://www.mapquestapi.com/geocoding/v1/address?key=cBdJO8Oy3mwHOkFoOUejjp7GOR95dAXW";
-    const address = ""+ street +", "+ postcode +", " +  city +" ";
-    const data = {
-        "location": address,
-        "options": {
-          "thumbMaps": false
-        }
-      }
-    const option = {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-    };
-    await fetch(url,option)
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        currentLat = data.results[0].locations[0].displayLatLng.lat;
-        currentLng = data.results[0].locations[0].displayLatLng.lng; 
-    });
 }
