@@ -9,12 +9,15 @@ Aviz ist eine Webapplikation, welche basieren auf nodejs und html, css, javascri
 
 ## Literature
 1. [Vorbeireitung](#1-vorbeireitung)
-* [Nodejs Dependencies](#nodejs-dependencies)
-* [Installation](#installation)
-* [Collection hinterlegen](#collection-hinterlegen)
-* [Projekt starten](#projekt-starten)
+    * [Nodejs Dependencies](#nodejs-dependencies)
+    * [Installation](#installation)
+    * [Collection hinterlegen](#collection-hinterlegen)
+    * [Projekt starten](#projekt-starten)
 2. [Nutzung](#2-nutzung)
-* [Login](#login)
+    * [Login](#login)
+        * [Show Mine](#show-mine)
+        * [Show All](#show-all)
+        * [Update/delete](#update/delete)
 
 ### 1. Vorbeireitung
 installieren den projekt und gehen zu der Projekt Lokale:
@@ -111,11 +114,12 @@ können Sie Add drücken. Kontakt wird in Datenbank gespeichert und Sie werden g
 Von der Homepage können Kontakte sehen und genaue Lokale von allen Kontakte sehen. 
 Wenn sie auf jeweiligen Kontakt drücken werden Sie zu Update Form gezeigt.
 
-+ Hinweis: 
+* Hinweis: 
     + Als `normalo` können Sie nur die Kontakte mit ownner als `normalo` ändern(update oder delete).
     + Als `admin` können Sie alle Kontakte ändern(update oder delete). 
-
-wenn Sie kontakte geändert haben, werden Sie zu Homepage zurzück geleitet. 
+    + wenn Sie auf Kontakt drücken aber nicht geändert haben, können Sie auf ![Updatebutton](./Adviz/public/images/readmeImages/update_button.png), es wird Ihnen zurück zu Homepage leiten. 
+    
+* wenn Sie kontakte geändert haben, werden Sie zu Homepage zurzück geleitet. 
 
 ![update-form](./Adviz/public/images/readmeImages/update_form.png "update-form")
 
