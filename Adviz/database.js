@@ -2,7 +2,7 @@
 const MongoClient = require('mongodb').MongoClient;
 
 
-//Create a database named "mydb":
+//Create url:
 var url = "mongodb://localhost:27017";
 // connect with database
 const client = new MongoClient(url);
