@@ -1,14 +1,14 @@
 <sup>
-name: Hoang Thien Duong
-matrikelnummer: S0577508
+Name: Hoang Thien Duong
+Matrikelnummer: S0577508
 </sup>
 
 # Adviz Webseite
 ***
 Aviz ist eine Webapplikation, welche basieren auf nodejs und html, css, javascript.
 
-## Literature
-1. [Vorbeireitung](#1-vorbeireitung)
+## Literatur
+1. [Vorbereitung](#1-vorbeireitung)
     * [Nodejs Dependencies](#nodejs-dependencies)
     * [Installation](#installation)
     * [Collection hinterlegen](#collection-hinterlegen)
@@ -19,33 +19,33 @@ Aviz ist eine Webapplikation, welche basieren auf nodejs und html, css, javascri
         * [Show All](#show-all)
         * [Update/delete](#update/delete)
 
-### 1. Vorbeireitung
-installieren den projekt und gehen zu der Projekt Lokale:
+### 1. Vorbereitung
+installieren das Projekt und gehen zu der Projektlokale:
 ```
 ./<user>/../Adviz
 
 ```
 #### Nodejs Dependencies
 ***
-Bevor Sie überhaupt das Projekt anfangen. müssen Sie sicher stellen, dass Sie schon Mongodb und npm auf Ihren locale schon installiert haben.
-um den porjekt zum Laufen zu bringen, müssen Sie ein paar Sachen erledigen. folgen Sie die folgenden Anweisungen.
+Bevor Sie überhaupt das Projekt anfangen. Müssen Sie sicherstellen, dass Sie schon MongoDB und NPM auf Ihren lokale installiert haben.
+Um das Projekt zum Laufen zu bringen, müssen Sie ein paar Sachen erledigen. Folgen Sie die folgenden Anweisungen.
 #### Installation
 ```
 npm install
 ```
-mit diesen Command wird alle nötige Dependencies für den Projekt installiert.
+Mit diesem Kommando wird alle nötige Dependencies für das Projekt installiert.
 #### Collection hinterlegen
 ***
-mit diesen command kann man erst die `contacts` und `users` collection hinterlegen und Daten hinzufügen.
+Mit diesem Kommando kann man erst die `contacts` und `users` Collection hinterlegen und Daten hinzufügen.
 ```
 mongo localhost:27017/advizDB database.js
 ```
-wenn diesen Befehl nicht funktioniert, probieren sie das untere Befehl:
+Wenn dies Befehl nicht funktioniert, probieren sie der untere Befehl:
 ```
 node database.js
 ```
 #### Projekt starten
-um den projekt zu starten, benutzen Sie diesen Command:
+um das Projekt zu starten, benutzen Sie dieses Kommando:
 ```
 npm start
 ```
@@ -53,16 +53,16 @@ oder
 ```
 nodemon app.js
 ```
-nach dem diesen Command ausgeführt, wird diesen Output auf Ihren Terminal zeigen
+Nach diesem Kommando ausgeführt, wird diesen Output auf Ihren Terminal zeigen
 ![alt npm_start](./Adviz/public/images/readmeImages/npmstart.png "npm start")
 
-das zeigt, dass der Projekt erfolgreich gestartet ist. 
+das zeigt, dass das Projekt erfolgreich gestartet ist. 
 
 ### 2. Nutzung
 ***
-jetzt öffnen Sie Ihren Browser und geben diesen url [`https://localhost:3000` ](https://localhost:3000) ein.
+Jetzt öffnen Sie Ihren Browser und geben diese URL  [`https://localhost:3000` ](https://localhost:3000) ein.
 
-den Login Seit wird wie Unter angezeigt
+den Login Seite wird wie unter angezeigt
 
 ![login](./Adviz/public/images/readmeImages/Login.png "Login Page")
 
@@ -100,7 +100,7 @@ wenn `Show Mine` gedrückt ist, wird alle Kontakte mit gleichen von Benutzer rol
 
 ##### Show All
 * Admina: 
-Alle Kontakte von role `admin` und `normalo` inklusive die private Kontakte werden   angezeigt.
+Alle Kontakte von role `admin` und `normalo`,  die private Kontakte werden  auch angezeigt.
 * Normalo: 
 Alle Kontakte von role `normalo` und  nicht private Kontakte von role `admin` werden angezeigt.
 
@@ -114,17 +114,17 @@ Wenn Ausfüllen fertig ist:
 
 ![add-new-ausgefüllt](./Adviz/public/images/readmeImages/addnew_ausgefuellt.png "add new ausgefuellt")
 
-können Sie Add drücken. Kontakt wird in Datenbank gespeichert und Sie werden gleichzeitig an Homepage zurzück geleitet. Von Homepage können sie entweder auf [Show Mine](#show-mine) oder [Show All](#show-all) drücken um den neuen Kontakt zu sehen.
+können Sie Add drücken. Kontakt wird in Datenbank gespeichert und Sie werden gleichzeitig an Homepage zurzück geleitet. Von Homepage können Sie entweder auf [Show Mine](#show-mine) oder [Show All](#show-all) drücken, um den neuen Kontakt zu sehen.
 ##### Update/Delete Kontakt
 Von der Homepage können Kontakte sehen und genaue Lokale von allen Kontakte sehen. 
-Wenn sie auf jeweiligen Kontakt drücken werden Sie zu Update Form gezeigt.
+Wenn Sie auf jeweiligen Kontakt drücken, werden Sie zu Update Form gezeigt.
 
 * Hinweis: 
     + Als `normalo` können Sie nur die Kontakte mit ownner als `normalo` ändern(update oder delete).
     + Als `admin` können Sie alle Kontakte ändern(update oder delete). 
-    + wenn Sie auf Kontakt drücken aber nicht geändert haben, können Sie auf ![Updatebutton](./Adviz/public/images/readmeImages/update_button.png) drücken, es wird Ihnen zurück zu Homepage leiten. 
+    + wenn Sie auf Kontakt drücken, aber nicht geändert haben, können Sie auf ![Updatebutton](./Adviz/public/images/readmeImages/update_button.png) drücken, es wird Ihnen zurück zu Homepage leiten. 
 
-* wenn Sie kontakte geändert haben, werden Sie zu Homepage zurzück geleitet. 
+* wenn Sie Kontakt geändert haben, werden Sie zu Homepage zurzück geleitet. 
 
 ![update-form](./Adviz/public/images/readmeImages/update_form.png "update-form")
 
@@ -133,4 +133,3 @@ Wenn sie auf jeweiligen Kontakt drücken werden Sie zu Update Form gezeigt.
 mit Logout button können Sie ausloggen und werden Sie zu Login Form gezeigt, damit Sie wieder einloggen können.
 
 ![Login](./Adviz/public/images/readmeImages/Login.png)
-
