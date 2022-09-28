@@ -138,7 +138,7 @@ mit Logout button können Sie ausloggen und werden Sie zu Login Form gezeigt, da
 #### Map
    + Map wird in Berlin lokalisiert, allerdings kann man auch anderen Adresse für Kontakte geben. Es wird auf der Map auch gezeigt.
    + Wenn Sie eingeloggt sind, der Map wird auch erzeugt.
-         + Wenn man auf  `Show Mine` drücke, werden nur eigene Kontakte auf der Map gezeigt. 
-         + Wenn man auf  `Show All` drücke, werden alle Kontakte bei der Liste auf der Map gezeigt.
+         * Wenn man auf  `Show Mine` drücke, werden nur eigene Kontakte auf der Map gezeigt. 
+         * Wenn man auf  `Show All` drücke, werden alle Kontakte bei der Liste auf der Map gezeigt.
 ##### Marker
    + Wenn man auf den Marker im Map drückt, kann man Marker Information sehen, dabei wird Name und Adresse des Kontaktes angezeigt.
