@@ -27,8 +27,9 @@ installieren das Projekt und gehen zu der Projektlokale:
 ```
 #### Nodejs Dependencies
 ***
-Bevor Sie überhaupt das Projekt anfangen. Müssen Sie sicherstellen, dass Sie schon MongoDB und NPM auf Ihren lokale installiert haben.
-Um das Projekt zum Laufen zu bringen, müssen Sie ein paar Sachen erledigen. Folgen Sie die folgenden Anweisungen.
+- Bevor Sie überhaupt das Projekt anfangen. Müssen Sie sicherstellen, dass Sie schon MongoDB und NPM auf Ihren lokale installiert haben.
+
+- Um das Projekt zum Laufen zu bringen, müssen Sie ein paar Sachen erledigen. Folgen Sie die folgenden Anweisungen.
 #### Installation
 ```
 npm install
