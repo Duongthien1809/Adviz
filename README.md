@@ -27,6 +27,7 @@ installieren den projekt und gehen zu der Projekt Lokale:
 ```
 #### Nodejs Dependencies
 ***
+Bevor Sie überhaupt das Projekt anfangen. müssen Sie sicher stellen, dass Sie schon Mongodb und npm auf Ihren locale schon installiert haben.
 um den porjekt zum Laufen zu bringen, müssen Sie ein paar Sachen erledigen. folgen Sie die folgenden Anweisungen.
 #### Installation
 ```
@@ -36,6 +37,10 @@ mit diesen Command wird alle nötige Dependencies für den Projekt installiert.
 #### Collection hinterlegen
 ***
 mit diesen command kann man erst die `contacts` und `users` collection hinterlegen und Daten hinzufügen.
+```
+mongo localhost:27017/advizDB database.js
+```
+wenn diesen Befehl nicht funktioniert, probieren sie das untere Befehl:
 ```
 node database.js
 ```
