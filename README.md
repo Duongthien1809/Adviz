@@ -124,6 +124,7 @@ Wenn Sie auf jeweiligen Kontakt drücken, werden Sie zu Update Form gezeigt.
     + Als `normalo` können Sie nur die Kontakte mit ownner als `normalo` ändern(update oder delete).
     + Als `admin` können Sie alle Kontakte ändern(update oder delete). 
     + wenn Sie auf Kontakt drücken, aber nicht geändert haben, können Sie auf ![Updatebutton](./Adviz/public/images/readmeImages/update_button.png) drücken, es wird Ihnen zurück zu Homepage leiten. 
+    + Sowie `delete` Button, wird das Kontakt gelöscht. diese wird nicht mehr auf der Karte zeigen.
 
 * wenn Sie Kontakt geändert haben, werden Sie zu Homepage zurzück geleitet. 
 
@@ -134,3 +135,10 @@ Wenn Sie auf jeweiligen Kontakt drücken, werden Sie zu Update Form gezeigt.
 mit Logout button können Sie ausloggen und werden Sie zu Login Form gezeigt, damit Sie wieder einloggen können.
 
 ![Login](./Adviz/public/images/readmeImages/Login.png)
+#### Map
+   + Map wird in Berlin lokalisiert, allerdings kann man auch anderen Adresse für Kontakte geben. Es wird auf der Map auch gezeigt.
+   + Wenn Sie eingeloggt sind, der Map wird auch erzeugt.
+         + Wenn man auf  `Show Mine` drücke, werden nur eigene Kontakte auf der Map gezeigt. 
+         + Wenn man auf  `Show All` drücke, werden alle Kontakte bei der Liste auf der Map gezeigt.
+##### Marker
+   + Wenn man auf den Marker im Map drückt, kann man Marker Information sehen, dabei wird Name und Adresse des Kontaktes angezeigt.
