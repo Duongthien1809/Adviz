@@ -45,30 +45,30 @@ async function run(){
             {
                 "firstname": "Bob public admin",
                 "lastname": "test",
-                "street": "85 Heerstraße",
-                "postcode": "56329",
-                "city": "St. Goar - St Goar",
+                "street": "Maulbeerallee",
+                "postcode": "14469",
+                "city": "Potsdam",
                 "country": "Deutschland",
                 "phone": "+1464545446",
                 "birthday": "2022-09-20",
                 "isPrivate": false,
                 "owner": "admin",
-                "lat": 39.547706,
-                "lng": -84.214082
+                "lat": 52.40415,
+                "lng": 13.02578
             },
             {
                 "firstname": "Alice private normalo",
                 "lastname": "Duong",
-                "street": "Engelstrasse 17",
-                "postcode": "77716",
-                "city": "Haslach im Kinzigtal",
+                "street": "Nostitzstraße 51",
+                "postcode": "10961",
+                "city": " Berlin",
                 "country": "Deutschland",
                 "phone": "+17662018872",
                 "birthday": "2022-09-20",
                 "isPrivate": true,
                 "owner": "normalo",
-                "lat": 48.27804,
-                "lng": 8.08753
+                "lat": 52.52913,
+                "lng": 13.33364
             }
         ];
         const users = [
