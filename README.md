@@ -41,7 +41,12 @@ Mit diesem Kommando kann man erst die `contacts` und `users` Collection hinterle
 ```
 mongo localhost:27017/advizDB database.js
 ```
-Wenn dies Befehl nicht funktioniert, probieren sie der untere Befehl:
+oder
+```
+mongosh localhost:27017/advizDB database.js
+```
+
+Wenn diese beide Befehle nicht funktioniert, probieren sie der untere Befehl:
 ```
 node database.js
 ```
